@@ -41,8 +41,8 @@ namespace MedicalCenter
                 if (stopwatch.Elapsed.Minutes == 45)
                     MessageBox.Show("Время до завершения сессии: " + 15 + " минут");
             }, null, TimeSpan.Zero, TimeSpan.FromMinutes(15));
-            while (stopwatch.Elapsed.Hours < 1 && israbot) { }
-            if (!israbot) return;
+            while (stopwatch.Elapsed.Hours < 1)
+                if (!israbot) return;
             CurrentData.worker = null;
             Application.Current.Dispatcher.Invoke(() =>
             {

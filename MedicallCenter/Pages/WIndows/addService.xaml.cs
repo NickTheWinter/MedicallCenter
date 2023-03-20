@@ -31,7 +31,7 @@ namespace MedicallCenter.Pages.WIndows
 
         private void add_Click(object sender, RoutedEventArgs e)
         {
-            var listcombo = ComboBox.ItemsSource as List<Service>;
+            var listcombo = ComboBox.ItemsSource as List<Service> ?? new List<Service>();
             var service = combobox.SelectedItem as Service;
             listcombo.Add(CurrentData.services.FirstOrDefault(x => x.service1 == service.service1));
             ComboBox.ItemsSource = listcombo;

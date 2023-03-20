@@ -11,6 +11,34 @@
         Value="14" />
             <Setter Property="Background" Value="#FF76E383"/>
         </Style>
+        <Style TargetType="{x:Type PasswordBox}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Button.BitmapEffect">
+                <Setter.Value>
+                    <DropShadowBitmapEffect Color="Black" Direction="320" Softness="0.3" ShadowDepth="5" Opacity="0.6" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type PasswordBox}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="5" BorderBrush="#FF498C51" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                        <Condition Property="IsSelectionActive" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
         <Style x:Key="ComboBoxEditableTextBox" TargetType="{x:Type TextBox}">
             <Setter Property="OverridesDefaultStyle" Value="true"/>
             <Setter Property="AllowDrop" Value="true"/>
@@ -71,7 +99,7 @@
                     </Border>
                 </Popup>
                 <ToggleButton x:Name="toggleButton" Background="#FF498C51" Grid.Column="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{DynamicResource ToggleButtonStyle3}">
-                    <Image Source="/arrow.png" Stretch="Uniform"/>
+                    <Image Source="/Resources/Image/arrow.png" Stretch="Uniform"/>
                 </ToggleButton>
                 <Border x:Name="border" BorderBrush="#606060" BorderThickness="1 1 0 1" CornerRadius="5 0 0 5">
                     <TextBox x:Name="PART_EditableTextBox" Foreground="Black" FontSize="16" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource ComboBoxEditableTextBox}" VerticalContentAlignment="Center"/>
@@ -101,7 +129,7 @@
                     </Border>
                 </Popup>
                 <ToggleButton x:Name="toggleButton" Background="#FF498C51" Grid.Column="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{DynamicResource ToggleButtonStyle3}">
-                    <Image Source="/arrow.png" Stretch="Uniform"/>
+                    <Image Source="/Resources/Image/arrow.png" Stretch="Uniform"/>
                 </ToggleButton>
                 <Border Grid.Column="1" Background="red">
                     <Button Content="✖" Foreground="white" Style="{DynamicResource ButtonStyle1}" Background="Transparent" FontSize="10" x:Name="del_location" Click="del_location_Click" Tag="{Binding RelativeSource={RelativeSource TemplatedParent}}"/>
@@ -358,6 +386,29 @@
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="red"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="CheckBoxStyle1" TargetType="{x:Type CheckBox}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#FF498C51"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" CornerRadius="5" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsPressed" Value="true">
+                    <Setter Property="Margin" Value="1"/>
                 </Trigger>
             </Style.Triggers>
         </Style>

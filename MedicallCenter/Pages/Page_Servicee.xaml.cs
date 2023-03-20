@@ -36,22 +36,23 @@ namespace MedicalCenter.Pages
                 btnAddeditService.Visibility = Visibility.Hidden;
             }
 
-            foreach (var item in CurrentData.services)
+            foreach (var item in CurrentData.db.Service.ToList())
             {
                 services.Add(new Serv(item));
             }
+
             cur_services = new List<Serv>(services);
             DisplayDataInGrid();
         }
 
         class Serv
         {
+
             public BitmapImage image { get; set; }
             public int id { get; set; }
             public string service1 { get; set; }
             public Nullable<double> price { get; set; }
             public Nullable<int> kod_service { get; set; }
-
             public Serv(Service service)
             {
                 this.id = service.id;
@@ -59,7 +60,19 @@ namespace MedicalCenter.Pages
                 this.price = service.price;
                 this.kod_service = service.kod_service;
             }
+            public static List<Service> ToServiceList(List<Serv> servList)
+            {
+                return servList.Select(s => new Service
+                {
+                    id = s.id,
+                    service1 = s.service1,
+                    price = s.price,
+                    kod_service = s.kod_service
+                }).ToList();
+            }
+
         }
+
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
@@ -126,21 +139,31 @@ namespace MedicalCenter.Pages
         {
             if (CurrentData.worker.Type1.id == 1)
             {
-                Service service = DataGridService.SelectedValue as Service;
-                Manager.frame.Navigate(new Page_ServiceeAddEdit(service));
+                Serv service = DataGridService.SelectedValue as Serv;
+                Manager.frame.Navigate(new Page_ServiceeAddEdit(service.id, service.image));
             }
         }
 
+
         private void bntDeleteService_Click(object sender, RoutedEventArgs e)
         {
-            var serviceForDelete = DataGridService.SelectedItems.Cast<Service>().ToList();
+            var serviceForDelete = DataGridService.SelectedItems.Cast<Serv>().ToList();
+            List<Service> serviceList = serviceForDelete.Select(s => CurrentData.db.Service.Find(s.id)).ToList();
+
             if (MessageBox.Show($"Вы точно хотите удалить следующие {serviceForDelete} записи", "Внимание",
                 MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 try
                 {
-                    CurrentData.db.Service.RemoveRange(serviceForDelete);
+                    CurrentData.db.Service.RemoveRange(serviceList);
                     CurrentData.db.SaveChanges();
+                    services.Clear();
+                    foreach (var item in CurrentData.db.Service.ToList())
+                    {
+                        services.Add(new Serv(item));
+                    }
+                    cur_services = new List<Serv>(services);
+
                     DisplayDataInGrid();
                     MessageBox.Show("Записи успешно удалены");
                 }
@@ -152,9 +175,10 @@ namespace MedicalCenter.Pages
             }
         }
 
+
         private void btn_AddEditService_Click(object sender, RoutedEventArgs e)
         {
-            Manager.frame.Navigate(new Page_ServiceeAddEdit(currentServis));
+            Manager.frame.Navigate(new Page_ServiceeAddEdit(0, null));
         }
 
         private void SetImage(IEnumerable<Serv> list)

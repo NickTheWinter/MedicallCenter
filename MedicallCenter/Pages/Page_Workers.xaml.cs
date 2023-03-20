@@ -40,7 +40,7 @@ namespace MedicalCenter.Pages
                 btn_addeditWorkers.Visibility = Visibility.Hidden;
                 
             }
-            workers = CurrentData.workers;
+            workers = CurrentData.db.Worker.ToList();
             maxpage = workers.Count / pageSize;
             DisplayDataInGrid();
         }
@@ -103,8 +103,7 @@ namespace MedicalCenter.Pages
                 {
                     CurrentData.db.Worker.RemoveRange(workerForDelete);
                     CurrentData.db.SaveChanges();
-                    DataGridWorkers.ItemsSource = CurrentData.db.Worker.ToList();
-                    //DataGridResult.ItemsSource = CurrentData.results;
+                    DisplayDataInGrid();
                 }
                 catch (Exception ex)
                 {

@@ -85,7 +85,7 @@ namespace MedicalCenter.Pages
                 stringBuilder.Append("Заполните поле ip: пусто\n");
             if (tbLasneterWorker.Text == "")
                 stringBuilder.Append("Заполните поле время: пусто\n");
-            if (ComboService.SelectedItem  == null)
+            if (ComboService.ItemsSource == null)
                 stringBuilder.Append("Заполните поле услуги: пусто\n");
             if (ComboDolgnost.SelectedItem  == null)
                 stringBuilder.Append("Заполните поле должность: пусто\n");

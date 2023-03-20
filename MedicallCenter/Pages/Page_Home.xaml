@@ -9,60 +9,69 @@
       Title="Home"
       Style="{StaticResource WinAll}">
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.8*"/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="0.8*"/>
-        </Grid.ColumnDefinitions>
+    <Grid Margin="20">
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="0.5*"/>
+            <RowDefinition MaxHeight="50px"/>
+            <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" 
-                    HorizontalAlignment="Center" 
-                    Grid.ColumnSpan="5" 
-                    Grid.Row="2">
-            <Button Height="35" Width="150"
-                        Content="Услуги"
-                        x:Name="button_service"
-                    Click="button_service_Click"/>
-            <Button Height="35" Width="150" 
-                        Margin="30 0 30 0"
-                        Content="Сотрудники"
-                        x:Name="button_worker"
-                    Click="button_worker_Click"/>
-            <Button Height="35" Width="150" 
-                        Margin="0 0 30 0"
-                        Content="Пациенты"
-                        x:Name="button_user"
-                    Click="button_user_Click"/>
-            <Button Height="35" Width="150" 
-                        Content="Результаты"
-                        x:Name="button_result"
-                    Click="button_result_Click"/>
-        </StackPanel>
-        <Image x:Name="avatar"  Grid.Column="1" Height="200" Width="180" Source="/Resources/Image/profile.png" />
-        <StackPanel Orientation="Vertical" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left">
-            <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
-                <TextBlock Text="Имя: " Width="35" TextAlignment="Right"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Image x:Name="avatar" Source="/Resources/Image/profile.png" />
+            <StackPanel Orientation="Vertical" Grid.Column="1" VerticalAlignment="Center">
                 <TextBlock x:Name="tbName" Text="Иванов Иван Иванович"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Роль: " Width="35" TextAlignment="Right"/>
                 <TextBlock x:Name="tbRole" Text="Администратор"/>
             </StackPanel>
-            <Button Height="35" Width="150" 
-                        Margin="0 50 0 0"
-                        Content="История входа"
-                        x:Name="btn_history"
-                    Click="btn_history_Click"/>
-            <Button Height="35" Width="150" 
-                        Margin="0 25 0 0"
-                        Content="Выйти"
-                        x:Name="btn_leave"
-                    Click="btn_leave_Click"/>
-        </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Right">
+                <Button Content="История входа" x:Name="btn_history" Click="btn_history_Click" Margin="10 5"  Padding="20 0" Width="200px" MaxWidth="300px"/>
+                <Button Content="Выйти" x:Name="btn_leave" Click="btn_leave_Click" Margin="10 5" Padding="20 0"/>
+            </StackPanel>
+            
+        </Grid>
+        <Grid Grid.Row="1" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="button_service" Click="button_service_Click" Margin="5">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="/Pages/profile.png" Stretch="UniformToFill" Width="70"/>
+                        <Label Content="Услуги" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Grid.Column="1" x:Name="button_worker" Click="button_worker_Click" Margin="5">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="/Pages/profile.png" Stretch="UniformToFill" Width="70"/>
+                        <Label Content="Сотрудники" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Grid.Column="1" Grid.Row="1" x:Name="button_user" Click="button_user_Click" Margin="5">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="/Pages/profile.png" Stretch="UniformToFill" Width="70"/>
+                        <Label Content="Пациенты" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Grid.Row="1"   x:Name="button_result" Click="button_result_Click" Margin="5">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="/Pages/profile.png" Stretch="UniformToFill" Width="70"/>
+                        <Label Content="Результаты" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+        </Grid>
     </Grid>
 </Page>

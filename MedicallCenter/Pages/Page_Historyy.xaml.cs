@@ -86,11 +86,6 @@ namespace MedicallCenter.Pages
             }
         }
 
-        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            Service service = DataGridHistory.SelectedValue as Service;
-            Manager.frame.Navigate(new Page_ServiceeAddEdit(service));
-        }
 
 
     }

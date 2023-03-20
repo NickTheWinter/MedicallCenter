@@ -22,11 +22,6 @@
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="#FF498C51"/>
                 <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="BLue"/>
             </FrameworkElement.Resources>
-            <DataGrid.RowStyle>
-                <Style TargetType="DataGridRow">
-                    <EventSetter Event="MouseDoubleClick" Handler="Grid_MouseLeftButtonDown"/>
-                </Style>
-            </DataGrid.RowStyle>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Номер входа" Binding="{Binding id}" Width="*">
                     <DataGridTextColumn.HeaderStyle>

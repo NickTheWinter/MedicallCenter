@@ -10,25 +10,40 @@
       Style="{StaticResource WinAll}">
 
     <Grid>
-        <StackPanel Orientation="Vertical" 
-                    MinWidth="360px" MinHeight="240px" 
-                    HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock TextAlignment="Center" FontSize="24px" FontWeight="Bold" Text="Авторизация"/>
-            <TextBlock TextAlignment="Left" Margin="0, 3px" FontSize="18px" Text="Логин"/>
-            <TextBox Name="tbLogin"  Padding="2px" FontSize="18px" Height="32px" MaxLength="24"/>
-            <TextBlock TextAlignment="Left" Margin="0, 3px" FontSize="18px" Text="Пароль"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2.5*" MaxWidth="550px"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Column="1" VerticalAlignment="Center" Padding="20px" CornerRadius="10" BorderThickness="4" BorderBrush="#FF498C51" >
             <Grid>
-                <Border CornerRadius="15" BorderBrush="#045C70" SnapsToDevicePixels="True">
-                    <PasswordBox Name="pboxPassword" Padding="2px" FontSize="18px" Height="32px" MaxLength="30"/>
-                </Border>
-                <TextBox Name="tboxPassword" Padding="2px" FontSize="18px" Height="32px" Visibility="Hidden" MaxLength="30"/>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" TextAlignment="Center" FontSize="24px" Text="Авторизация" Margin="0,-2,0,2" />
+                <TextBlock Grid.Row="1" TextAlignment="Left" Margin="0, 3px" FontSize="18px" Text="Логин"/>
+                <TextBox Grid.Row="2" Name="tbLogin" Style="{DynamicResource TextBoxStyle2}" Padding="2px" FontSize="18px" MaxLength="24"/>
+                <TextBlock Grid.Row="3" TextAlignment="Left" Margin="0, 3px" FontSize="18px" Text="Пароль"/>
+                <Grid Grid.Row="4">
+                    <Border CornerRadius="15" BorderBrush="#045C70" SnapsToDevicePixels="True">
+                        <PasswordBox Name="pboxPassword" Padding="2px" FontSize="18px" MaxLength="30"/>
+                    </Border>
+                    <TextBox Name="tboxPassword" Padding="2px" FontSize="18px" Visibility="Hidden" MaxLength="30"/>
+                </Grid>
+                <WrapPanel Grid.Row="5" >
+                    <TextBlock Text="Показать пароль" FontSize="16px" VerticalAlignment="Center"/>
+                    <CheckBox Name="cbShowPassword"  VerticalAlignment="Center" HorizontalAlignment="Center" Width="20px" Height="20px" Margin="5px" Click="cbShowPassword_Click" Style="{DynamicResource CheckBoxStyle1}"/>
+                </WrapPanel>
+                <Button x:Name="bLogin" Grid.Row="6" Content="Вход" Height="32px" FontSize="18px" BorderBrush="#FFABADB3" Background="White" Click="bLogin_Click"/>
+                <Button x:Name="bVod" Grid.Row="7" Content="Войти без аккаунта" FontSize="18px" BorderBrush="#FFABADB3" Background="White" Click="bVod_Click" Margin="0 5 0 0"/>
             </Grid>
-            <WrapPanel>
-                <TextBlock Text="Показать пароль" FontSize="16px"/>
-                <CheckBox Name="cbShowPassword" VerticalAlignment="Center" HorizontalAlignment="Center" Width="15px" Height="15px" Margin="5px" Click="cbShowPassword_Click"/>
-            </WrapPanel>
-            <Button x:Name="bLogin" Content="Вход" Height="32px" FontSize="18px" BorderBrush="#FFABADB3" Background="White" Click="bLogin_Click"/>
-            <Button x:Name="bVod" Content="Войти без аккаунта" Height="32px" FontSize="18px" BorderBrush="#FFABADB3" Background="White" Click="bVod_Click" Margin="0 40 0 0"/>
-        </StackPanel>
+        </Border>
     </Grid>
 </Page>
